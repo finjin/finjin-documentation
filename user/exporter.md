@@ -7,6 +7,13 @@ This documentation is preliminary.
 \section exporter_about About
 The Finjin exporter plug-ins for 3DS Max and Maya generate 3D assets for use with the Finjin engine.
 
+\subsection exporter_features Features
+* Supports 3DS Max on Windows, and Maya on Windows and MacOS.
+* Includes installer applications.
+* Dialogs for editing global, scene, and object settings.
+* Custom user data type system.
+* And more...
+
 
 
 \section exporter_supported_modellers Supported 3D Applications / Platforms
