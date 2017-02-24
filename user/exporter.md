@@ -43,7 +43,6 @@ Objects named using the \\, /, or ! character will be used to create subdirector
   
 \section exporter_license License
   * GNU General Public License version 3 (or later) - http://www.gnu.org/licenses
-  * Write section on giving credit
 
   
   
