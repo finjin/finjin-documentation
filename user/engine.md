@@ -8,14 +8,14 @@ This documentation is preliminary.
 
 The Finjin engine provides the core functionality for applications.
 
-\subsection engine_features Features
+\section engine_features Features
 * Creates application windows.
 * Implements the main application loop.
 * Provides a multithreaded job system for distributing work across multiple cores.
 * Provides readers for loading scene data as a stream.
 * And more...
 
-\subsection engine_supported_platforms Supported Operating Systems / Platforms
+\section engine_supported_platforms Supported Operating Systems / Platforms
 
 | Operating System / Platform      | Graphics System | Sound System     | Input System                                        | Special Notes                                                 |
 | :------------------------------: | :-------------: | :--------------: | :-------------------------------------------------: | ------------------------------------------------------------- |
@@ -28,7 +28,7 @@ The Finjin engine provides the core functionality for applications.
 | Windows 10 / UWP                 | D3D12           | XAudio2          | Standard window input and XInput                    | Multiple windows not available.                               |
 | Windows 10 / Win32               | D3D12 or Vulkan | XAudio2          | XInput and DirectInput                              | D3D12 and Vulkan versions are separate executables.           |
 
-\subsection engine_dev_target_tools Development Target Tools
+\section engine_dev_target_tools Development Target Tools
 
 * All targets:
   * Python 3.x - Some utilities are written in Python.
