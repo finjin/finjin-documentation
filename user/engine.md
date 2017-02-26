@@ -134,7 +134,7 @@ value
   * By default meshes, lights, cameras, materials, and textures will be exported.
 2. Modify settings.
   * Settings are accessible through the Finjin menu, which is part of the main menu in 3DS Max and Maya. Global, scene, and object settings are available.
-    * *Global settings* are loaded when 3DS Max / Maya start, and applied the same across all exports.
+    * *Global settings* are loaded when 3DS Max / Maya starts, and applied the same across all exports.
     * *Scene settings* are part of a the 3DS Max / Maya file, and are applied to the scene during the export of that file.
     * *Object settings* are part of a the 3DS Max / Maya file, and are applied to an object during the export of that file. 
   * For a simple scene no settings modification is necessary.
