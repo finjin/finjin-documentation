@@ -131,7 +131,6 @@ value
 
 1. Create a scene in 3DS Max or Maya.
   * Only .png format images should be used as textures in materials in 3DS Max / Maya.
-  * By default meshes, lights, cameras, materials, and textures will be exported.
 2. Modify settings.
   * Settings are accessible through the Finjin menu, which is part of the main menu in 3DS Max and Maya. Global, scene, and object settings are available.
     * *Global settings* are loaded when 3DS Max / Maya starts, and applied the same across all exports.
@@ -140,6 +139,7 @@ value
   * For a simple scene no settings modification is necessary.
 3. Export the data.
   * The export can be performed through the standard means in 3DS Max / Maya, or through the Finjin *Export* menu. 
+  * By default meshes, lights, cameras, materials, and textures will be exported.
   * The data will be exported into an <a href="#engine_asset_directory_structure">asset directory structure</a>.
   * Textures will be converted into .texture files. If necessary, these can be unwrapped using *wrap_file.py* in finjin-common/tools.
 4. Load the data into your application or the <a href="md_viewer.html">Finjin viewer</a>.
