@@ -12,7 +12,7 @@ The Finjin engine provides the core functionality for applications.
 * Creates application windows.
 * Implements the main application loop.
 * Provides a multithreaded job system for distributing work across multiple cores.
-* Provides readers for loading scene data as a stream.
+* Provides readers for streaming in scene data.
 * And more...
 
 \section engine_supported_platforms Supported Operating Systems / Platforms
