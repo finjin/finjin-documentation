@@ -1,5 +1,5 @@
 # finjin-documentation
-Source documentation for the various Finjin projects. The final documentation must be generated with [Doxygen](http://www.stack.nl/~dimitri/doxygen/).
+Documentation for the various Finjin projects. The final documentation must be generated with [Doxygen](http://www.stack.nl/~dimitri/doxygen/).
 
 ## Repository Structure
 ```
