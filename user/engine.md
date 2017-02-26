@@ -177,24 +177,24 @@ For example:
 ```
 app
   shaders-d3d12
-    SomeShaders.shader
+    some-shaders.shader
   shaders-metal
-    SomeShaders.shader
+    some-shaders.shader
   shaders-vulkan
-    SomeShaders.shader
+    some-shaders.shader
 ```
 
-In the above scenario, *SomeShaders.shader* will be read from the *shaders-d3d12* subdirectory when the Direct3D12 version of the application is being run. And so on. A more detailed example follows.
+In the above scenario, *some-shaders.shader* will be read from the *shaders-d3d12* subdirectory when the Direct3D12 version of the application is being run. A more detailed example follows.
 
 ```
 app
   shaders-win32-d3d12
-    SomeShaders.shader
+    some-shaders.shader
   shaders-uwp-d3d12
-    SomeShaders.shader
+    some-shaders.shader
 ```
 
-In the above scenario, *SomeShaders.shader* will be read from the *shaders-win32-d3d12* subdirectory when the Win32 / Direct3D12 version of the application is being run, and the *shaders-uwp-d3d12* subdirectory when the UWP / Direct3D12 version is being run.
+In the above scenario, *some-shaders.shader* will be read from the *shaders-win32-d3d12* subdirectory when the Win32 / Direct3D12 version of the application is being run, and the *shaders-uwp-d3d12* subdirectory when the UWP / Direct3D12 version is being run.
 
 Note that the additional asset subdirectory components must be in the correct order, and must be separate by the '-' character. That means *shaders-win32-d3d12* will work, but *shaders+d3d12+win32* will not.
 
