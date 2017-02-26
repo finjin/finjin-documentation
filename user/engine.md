@@ -57,7 +57,7 @@ When specifying memory size in text, such as in a configuration file, the follow
 | Kilobyte          | 1,000                                 | KB, kilobyte, kilobytes                     | 3KB, 3kilobyte, 3kilobytes           |
 | Kibibyte          | 1,024                                 | KiB, kibibyte, kibibytes                    | 3KiB, 3kibibyte, 3kibibytes          |
 | Megabyte          | 1,000,000 (1,000 x 1,000)             | MB, megabyte, megabytes                     | 3MB, 3megabyte, 3megabytes           |
-| Mebibyte          | 1,048,567 (1,024 x 1,024)             | MiB, mebibyte, mebibytes                    | 3MiB, 3mebibyte, 3mebibytes          |
+| Mebibyte          | 1,048,576 (1,024 x 1,024)             | MiB, mebibyte, mebibytes                    | 3MiB, 3mebibyte, 3mebibytes          |
 | Gigabyte          | 1,000,000,000 (1,000 x 1,000 x 1,000) | GB, gigabyte, gigabytes                     | 3GB, 3gigabyte, 3gigabytes           |
 | Gibibyte          | 1,073,741,824 (1,024 x 1,024 x 1,024) | GiB, gibibyte, gibibytes                    | 3GiB, 3gibibyte, 3gibibytes          |
 
