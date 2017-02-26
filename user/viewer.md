@@ -5,7 +5,7 @@ This documentation is preliminary.
 ```
 
 \section viewer_about About
-The Finjin Viewer is an application that loads and displays scene files exported by the Finjin exporters.
+The Finjin Viewer is an application that loads and displays scene files exported by the <a href="md_exporter.html">Finjin exporters</a>.
 
 \section viewer_command_line Command Line Options
 * *-file scene-file-name-or-path* - The Finjin scene file to load and display.

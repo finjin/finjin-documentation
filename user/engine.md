@@ -86,12 +86,13 @@ When specifying time duration in text, such as in a configuration file, the foll
 | <a href="#engine_extended_config_file_format">Extended Config</a>  | .cfg      | Text / UTF-8 | \\r\\n or \\n | Entire file                                                        | Yes                               | Configuration files that can be modified by hand                      | Finjin::Common::ConfigDataChunkReader, Finjin::Common::ConfigDataChunkWriter, Finjin::Common::ConfigDocumentReader, Finjin::Common::ConfigDocumentWriter | 1)The writer writes \\n, but the reader reads \\r\\n or \\n.                                                                                                                                                                   |
 | JSON                                                               | .json     | Text / UTF-8 | \\r\\n or \\n | One data line - Up to the size of the longest line in the file     | No - Specific formatting required | Assets that can be read by a standard JSON parser outside the engine  | Finjin::Common::JsonDataChunkReader, Finjin::Common::JsonDataChunkWriter                                                                                 | 1)The writer writes \\n, but the reader reads \\r\\n or \\n. 2)JsonDataChunkWriter or the Finjin exporters must be used to create these files (not an external JSON writer) due to specific formatting requirements.           |
 | Texture                                                            | .texture  | Binary       | (none)        | Entire file                                                        | No                                | Textures                                                              | Finjin::Common::WrappedFileReader, Finjin::Common::WrappedFileWriter                                                                                     | 1)This file contains an embedded image file. The image format must be supported to load successfully. 2)WrappedFileWriter, wrap_file.py, or the Finjin exporters must be used to create these files.                           |
+| Sound                                                              | .sound    | Binary       | (none)        | Entire file                                                        | No                                | Sounds                                                              | Finjin::Common::WrappedFileReader, Finjin::Common::WrappedFileWriter                                                                                       | 1)This file contains an embedded sound file. The sound format must be supported to load successfully. 2)WrappedFileWriter, wrap_file.py, or the Finjin exporters must be used to create these files.                           |
 
 \subsection engine_external_file_formats External File Formats
 
 | Name                                                               | Extension | Encoding     | Line Ending   | Reader Memory Usage                                                | Hand-Written Files Acceptable     | Best Use                                                              | Related Classes                                                                                                                                          | Special Notes                                                                                                                                                                                                                  |
 | :----------------------------------------------------------------: | :-------: | :----------: | :-----------: | :----------------------------------------------------------------: | :-------------------------------: | :-------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| DDS                                                                | .dds      | Binary       | (none)        | Entire file                                                        | No                                | Textures                                                              | Finjin::Engine::DDSReader                                                                                                                                |                                                                                                                                                                                                                                |
+| DDS                                                                | .dds      | Binary       | (none)        | Entire file                                                        | No                                | Textures                                                              | Finjin::Engine::DDSReader                                                                                                                                | This file type is supported by the D3D12 graphics system.                                                                                                                                                                      |
 | PNG                                                                | .png      | Binary       | (none)        | Entire file                                                        | No                                | Textures                                                              | Finjin::Common::PNGReader                                                                                                                                |                                                                                                                                                                                                                                |
 | WAV                                                                | .wav      | Binary       | (none)        | Entire file                                                        | No                                | Sound effects                                                         | Finjin::Engine::WAVReader                                                                                                                                |                                                                                                                                                                                                                                |
 
@@ -106,7 +107,7 @@ The extended .cfg format is often used for handwritten configuration files, such
 ### Example
 
 ```
-#This is a comment. Comments must be on their own line
+#This is a comment. Comments must be on their own line.
 some-key=some value
 [section]
 {	
@@ -124,6 +125,101 @@ value
 }
 ```
 
+\section engine_workflow Asset Creation Workflow
+
+\subsection engine_workflow_basic Basic Workflow
+
+1. Create a scene in 3DS Max or Maya.
+  * Only .png format images should be used as textures in materials in 3DS Max / Maya.
+  * By default meshes, lights, cameras, materials, and textures will be exported.
+2. Modify settings.
+  * Settings are accessible through the Finjin menu, which is part of the main menu in 3DS Max and Maya. Global, scene, and object settings are available.
+    * *Global settings* are loaded when 3DS Max / Maya start, and applied the same across all exports.
+    * *Scene settings* are part of a the 3DS Max / Maya file, and are applied to the scene during the export of that file.
+    * *Object settings* are part of a the 3DS Max / Maya file, and are applied to an object during the export of that file. 
+  * For a simple scene no settings modification is necessary.
+3. Export the data.
+  * The export can be performed through the standard means in 3DS Max / Maya, or through the Finjin *Export* menu. 
+  * The data will be exported into an <a href="#engine_asset_directory_structure">asset directory structure</a>.
+  * Textures will be converted into .texture files. If necessary, these can be unwrapped using *wrap_file.py* in finjin-common/tools.
+4. Load the data into your application or the <a href="md_viewer.html">Finjin viewer</a>.
+  * To load a file named *file.scene-fstd* into Finjin viewer: 
+    * If the file is located within the viewer's *app* subdirectory: *finjin-viewer -file file.scene-fstd*
+    * If the file is located outside the viewer's *app* subdirectory: *finjin-viewer -file /absolute/path/to/file.scene-fstd*
+
+\section engine_asset_directory_structure Asset Directory Structure
+
+Finjin asset files are organized beneath a root directory, and a number of specifically named subdirectories. 
+
+An example asset directory:
+```
+root
+  meshes
+  morphanims
+  nodeanims
+  poseanims
+  prefabs
+  scenes
+  skeletons  
+  textures
+```
+
+The subdirectory names correspond to the entries in Finjin::Engine::AssetClass.
+
+By default, an application has two asset directory roots: 
+1. *engine* - Reserved for engine-provided asset files.
+2. *app* - Application-specific asset files. This is a suitable location for exported files. Subdirectories will be created with their default names.
+
+\subsection engine_asset_directory_naming Naming Asset Subdirectories
+In order to support various platforms and configurations, it is possible to name subdirectories in a way that causes an asset in one subdirectory to be selected instead of one with the same name in another directory. 
+
+For example:
+```
+app
+  shaders-d3d12
+    SomeShaders.shader
+  shaders-metal
+    SomeShaders.shader
+  shaders-vulkan
+    SomeShaders.shader
+```
+
+In the above scenario, *SomeShaders.shader* will be read from the *shaders-d3d12* subdirectory when the Direct3D12 version of the application is being run. And so on. A more detailed example follows.
+
+```
+app
+  shaders-win32-d3d12
+    SomeShaders.shader
+  shaders-uwp-d3d12
+    SomeShaders.shader
+```
+
+In the above scenario, *SomeShaders.shader* will be read from the *shaders-win32-d3d12* subdirectory when the Win32 / Direct3D12 version of the application is being run, and the *shaders-uwp-d3d12* subdirectory when the UWP / Direct3D12 version is being run.
+
+Note that the additional asset subdirectory components must be in the correct order, and must be separate by the '-' character. That means *shaders-win32-d3d12* will work, but *shaders+d3d12+win32* will not.
+
+\subsection engine_asset_directory_components Asset Subdirectory Components
+
+| Description                             | Subdirectory String                                                                                                                                                                           | Examples                                                                                              | Special Notes                                                              |
+| :-------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------: |
+| Asset class directory name              | inputbindings, inputdevices, materials, meshes, morphanims, nodeanims, poseanims, prefabs, scenes, settings, shaders, skeletons, skeletonanims, sounds, stringtables, textures, userdatatypes |                                                                                                       | This component is required.                                                |
+| Language                                | (language code)                                                                                                                                                                               | en                                                                                                    |                                                                            |
+| Country / region                        | (country code)                                                                                                                                                                                | en_us, en_gb                                                                                          | Language and country / region are specified together as *language_country* |
+| CPU architecture                        | cpu_(arch)                                                                                                                                                                                    | cpu_x64, cpu_arm64                                                                                    |                                                                            |
+| CPU byte order                          | bigendian, littleendian                                                                                                                                                                       |                                                                                                       |                                                                            |
+| Operating system                        | windows, macos, ios, tvos, linux, android                                                                                                                                                     |                                                                                                       |                                                                            |
+| Operating system version                | v_(major)_(minor) or v_(major)                                                                                                                                                                | v_1_0, v_14                                                                                           | The *major* and *minor* strings are specific to the operating system.      |
+| Application platform                    | win32, uwp                                                                                                                                                                                    |                                                                                                       |                                                                            |
+| GPU system                              | d3d12, vulkan, metal                                                                                                                                                                          |                                                                                                       |                                                                            |
+| GPU feature level                       | gpufeature_(level)                                                                                                                                                                            | (Direct3D 12) gpufeature_10_1                                                                         | The *level* string is specific to the GPU system.                          |
+| GPU shader model                        | gpusm_(version)                                                                                                                                                                               | (Direct3D 12) gpusm_5_1, gpusm_nv_5_1                                                                 | The *version* string is specific to the GPU system.                        |
+| Sound system                            | xaudio2, avaudioengine, opensles, openal                                                                                                                                                      |                                                                                                       |                                                                            |
+| Input device type                       | gamecontroller, keyboard, mouse, touchscreen, accelerometer                                                                                                                                   |                                                                                                       |                                                                            |
+| Input system                            | win32input, uwpinput, iosinput, macosinput, linuxinput                                                                                                                                        |                                                                                                       |                                                                            |
+| Input API                               | xinput, dinput, gcinput                                                                                                                                                                       |                                                                                                       |                                                                            |
+| Input device descriptor                 | inputdevice_(product descriptor)                                                                                                                                                              | (DirectInput) inputdevice_4c05c405_0000_0000_0000_504944564944, (Android) inputdevice_vid2341_pid1000 | The *product descriptor* string is specific to the input system.           |
+| Device model                            | device_(model)                                                                                                                                                                                | device_nexus6, device_ipad                                                                            |                                                                            |
+        
 
 \section engine_tested_hardware_software Tested Hardware / Software
 
