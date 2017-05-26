@@ -58,7 +58,7 @@ Objects named using the \\, /, or ! character will be used to create subdirector
   
   
 \section exporter_credits Credits
-* boost - [boost.org](http://www.boost.org)
+* Boost - [boost.org](http://www.boost.org)
 ```
 Boost Software License - Version 1.0 - August 17th, 2003
 
@@ -125,7 +125,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
 ```
 
-* nowide - [cppcms.com/files/nowide](http://cppcms.com/files/nowide/html)
+* Boost.Nowide - [cppcms.com/files/nowide](http://cppcms.com/files/nowide/html)
 ```
 Boost Software License - Version 1.0 - August 17th, 2003
 Permission is hereby granted, free of charge, to any person or organization
@@ -186,7 +186,7 @@ Mozilla Public License Version 2.0
 Full license at https://www.mozilla.org/en-US/MPL/2.0/
 ```
 
-* rapidjson - [github.com/miloyip/rapidjson](https://github.com/miloyip/rapidjson)
+* RapidJSON - [github.com/miloyip/rapidjson](https://github.com/miloyip/rapidjson)
 ```
 Tencent is pleased to support the open source community by making RapidJSON available. 
  
@@ -247,7 +247,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
 
-* eigen - [eigen.tuxfamily.org](http://eigen.tuxfamily.org/index.php)
+* Eigen - [eigen.tuxfamily.org](http://eigen.tuxfamily.org/index.php)
 ```
 Mozilla Public License Version 2.0
 ==================================
@@ -392,7 +392,7 @@ glennrp at users.sourceforge.net
 March 16, 2017
 ```
 
-* tinyxml - [grinninglizard.com](http://www.grinninglizard.com/tinyxml)
+* TinyXml-2 - [grinninglizard.com](http://www.grinninglizard.com/tinyxml)
 ```
 Original code by Lee Thomason (www.grinninglizard.com)
 
