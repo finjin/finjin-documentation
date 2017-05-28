@@ -1,5 +1,8 @@
 ## Release History
 
+\section version_0_3_7 Version 0.3.7 - May 27, 2017
+* Added screen capture capability.
+
 \section version_0_3_6 Version 0.3.6 - May 25, 2017
 * Modified renderers to render to off-screen targets.
 * Various improvements to string parsing, error checking, and file handling.
